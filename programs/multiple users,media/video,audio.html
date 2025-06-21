@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>YouTube and Music Player</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎥 Watch Video & 🎵 Play Music</h1>
+
+  <!-- YouTube Video -->
+  <h2>YouTube Video</h2>
+  <iframe width="560" height="315"
+    src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+
+  <!-- Music Player -->
+  <h2>Music Player</h2>
+  <audio id="musicPlayer">
+    <source src="my-music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <button onclick="document.getElementById('musicPlayer').play()">▶️ Play Music</button>
+  <button onclick="document.getElementById('musicPlayer').pause()">⏸️ Pause Music</button>
+
+</body>
+</html>

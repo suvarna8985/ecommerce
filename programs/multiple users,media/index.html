@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Flow Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .hidden { display: none; }
+    .section { margin-bottom: 20px; }
+    video { width: 100%; max-width: 500px; }
+  </style>
+</head>
+<body>
+
+  <h1>User Flow: Creator vs Viewer</h1>
+
+  <!-- User Role Selection -->
+  <div class="section" id="roleSelect">
+    <label>Select User Role:</label><br>
+    <button onclick="selectRole('creator')">Creator</button>
+    <button onclick="selectRole('viewer')">Viewer</button>
+  </div>
+
+  <!-- Creator Upload Section -->
+  <div class="section hidden" id="creatorSection">
+    <h2>Creator Panel</h2>
+    <input type="file" id="videoUpload" accept="video/*">
+    <br><br>
+    <video id="uploadedVideo" controls class="hidden"></video>
+  </div>
+
+  <!-- Viewer Section -->
+  <div class="section hidden" id="viewerSection">
+    <h2>Viewer Panel</h2>
+    <video id="viewerVideo" controls src=""></video>
+  </div>
+
+  <script>
+    let uploadedVideoURL = '';
+
+    // Role selection function
+    function selectRole(role) {
+      document.getElementById('roleSelect').classList.add('hidden');
+
+      if (role === 'creator') {
+        document.getElementById('creatorSection').classList.remove('hidden');
+      } else {
+        document.getElementById('viewerSection').classList.remove('hidden');
+
+        // Load shared video if already uploaded
+        if (uploadedVideoURL) {
+          document.getElementById('viewerVideo').src = uploadedVideoURL;
+        } else {
+          alert("No video uploaded yet. Please upload as a creator first.");
+        }
+      }
+    }
+
+    // Handle file upload
+    document.getElementById('videoUpload').addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      if (file) {
+        uploadedVideoURL = URL.createObjectURL(file);
+        const video = document.getElementById('uploadedVideo');
+        video.src = uploadedVideoURL;
+        video.classList.remove('hidden')
+ }
+    });
+  </script>
+
+</body>
+</html>
